@@ -4,7 +4,8 @@ import helmet from 'helmet';
 import { pino } from 'pino';
 
 import { healthCheckRouter } from '@/api/healthCheck/healthCheckRouter';
-import { userRouter } from '@/api/user/userRouter';
+// import { userRouter } from '@/api/user/userRouter';
+import { waWebRouter } from '@/api/whatsapp/waWebRouter';
 import { openAPIRouter } from '@/api-docs/openAPIRouter';
 import errorHandler from '@/common/middleware/errorHandler';
 import rateLimiter from '@/common/middleware/rateLimiter';
@@ -18,6 +19,7 @@ const app: Express = express();
 app.set('trust proxy', true);
 
 // Middlewares
+app.use(express.json());
 app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(helmet());
 app.use(rateLimiter);
@@ -27,7 +29,7 @@ app.use(requestLogger);
 
 // Routes
 app.use('/health-check', healthCheckRouter);
-app.use('/users', userRouter);
+app.use('/wa-web', waWebRouter);
 
 // Swagger UI
 app.use(openAPIRouter);
