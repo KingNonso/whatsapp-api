@@ -102,3 +102,11 @@ Developed to streamline backend development, this boilerplate is your solution f
 We'd love to hear your feedback and suggestions for further improvements. Feel free to contribute and join us in making backend development cleaner and faster!
 
 🎉 Happy coding!
+
+## Links for reference
+
+https://github.com/char0n/swagger-ui-vite-dist/pull/2/files
+https://github.com/scottie1984/swagger-ui-express/issues/90#issuecomment-662847118
+https://github.com/scottie1984/swagger-ui-express/issues/312
+https://github.com/scottie1984/swagger-ui-express/issues/316
+https://stackoverflow.com/questions/60082388/nestjs-swagger-ui-css-resource-not-found-in-production-mode

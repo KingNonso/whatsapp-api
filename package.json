@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/index.ts | pino-pretty",
     "build": "rimraf dist && tsup",
+    "clear-wa-auth": "rimraf .wwebjs_auth",
     "start": "node dist/index.js",
     "clean": "rimraf dist coverage",
     "lint": "eslint",
@@ -31,7 +32,7 @@
     "pino-http": "^10.0.0",
     "qrcode-terminal": "^0.12.0",
     "swagger-ui-express": "^5.0.0",
-    "whatsapp-web.js": "^1.24.0",
+    "whatsapp-web.js": "github:pedroslopez/whatsapp-web.js#webpack-exodus",
     "zod": "^3.22.4"
   },
   "devDependencies": {
