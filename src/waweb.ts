@@ -28,8 +28,8 @@ waWebClient.on('qr', (qr) => {
 });
 
 // Listening to all incoming messages
-waWebClient.on('message_create', (message) => {
-  message.reply('This is an automated response. Kindly contact the admin for further assistance.');
-});
+// waWebClient.on('message_create', (message) => {
+//   message.reply('This is an automated response. Kindly contact the admin for further assistance.');
+// });
 
 export { waWebClient };
