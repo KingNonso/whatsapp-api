@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(helmet());
 app.use(rateLimiter);
+app.use(express.static('public'));
 
 // Request logging
 app.use(requestLogger);

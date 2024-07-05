@@ -1,3 +1,4 @@
+import QRCode from 'qrcode';
 import qrcode from 'qrcode-terminal';
 import waWeb from 'whatsapp-web.js';
 
@@ -23,13 +24,18 @@ waWebClient.on('ready', async () => {
   logger.info(`WWeb v${version}`);
 });
 
-waWebClient.on('qr', (qr) => {
-  qrcode.generate(qr, { small: true });
+waWebClient.on('qr', (qrCodeString) => {
+  qrcode.generate(qrCodeString, { small: true });
+  QRCode.toFile('public/qr-codes/latest.png', qrCodeString, {
+    type: 'png',
+  });
 });
 
 // Listening to all incoming messages
-// waWebClient.on('message_create', (message) => {
-//   message.reply('This is an automated response. Kindly contact the admin for further assistance.');
-// });
+waWebClient.on('message_create', (message) => {
+  if (message.body.length > 2) {
+    message.reply('This is an automated response. Kindly contact the admin for further assistance.');
+  }
+});
 
 export { waWebClient };

@@ -27,3 +27,5 @@ dist-ssr
 *.sw?
 
 .wwebjs_auth
+.wwebjs_cache
+public/qr-codes/latest.png
