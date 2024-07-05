@@ -13,8 +13,8 @@ import requestLogger from '@/common/middleware/requestLogger';
 import { env } from '@/common/utils/envConfig';
 
 const logger = pino({ name: 'server start' });
-const infoLoggerToFile = pino({ name: 'Info logger', level: 'info' }, pino.destination('public/logs/info.log'));
-const errorLoggerToFile = pino({ name: 'Error logger', level: 'error' }, pino.destination('public/logs/errors.log'));
+const infoLoggerToFile = pino({ name: 'Info logger', level: 'info' }, pino.destination('public/logs/info.json'));
+const errorLoggerToFile = pino({ name: 'Error logger', level: 'error' }, pino.destination('public/logs/errors.json'));
 const app: Express = express();
 
 // Set the application to trust the reverse proxy
