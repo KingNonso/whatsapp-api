@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { type SingleWAMsg } from '@/api/whatsapp/waWebModel';
 import { ResponseStatus, ServiceResponse } from '@/common/models/serviceResponse';
-import { logger } from '@/server';
+import { errorLoggerToFile, infoLoggerToFile, logger } from '@/server';
 import { waWebClient } from '@/waweb';
 export const waWebService = {
   // Retrieves all users from the database
@@ -14,6 +14,7 @@ export const waWebService = {
 
       if (!isRegisteredWhatsAppNumber) {
         logger.error(`Phone number ${phoneNumber} is not a registered WhatsApp number`);
+        errorLoggerToFile.error(`Phone number ${phoneNumber} is not a registered WhatsApp number`);
         return new ServiceResponse<string>(
           ResponseStatus.Failed,
           'Phone number is not a registered WhatsApp number',
@@ -27,6 +28,7 @@ export const waWebService = {
       logger.info(`Sending message to ${username}: ${message}`);
       if (response.ack !== -1) {
         logger.info(`Message sent to ${phoneNumber}`);
+        infoLoggerToFile.info(`Message sent to ${phoneNumber}`);
         return new ServiceResponse<string>(
           ResponseStatus.Success,
           'Message sent',
@@ -35,6 +37,7 @@ export const waWebService = {
         );
       } else {
         logger.error(`Message NOT sent to ${phoneNumber}`);
+        errorLoggerToFile.error(`Message NOT sent to ${phoneNumber}`);
         return new ServiceResponse<string>(
           ResponseStatus.Failed,
           'Something went wrong. Message not sent',
@@ -45,6 +48,7 @@ export const waWebService = {
     } catch (ex) {
       const errorMessage = `Error sending message: $${(ex as Error).message}`;
       logger.error(errorMessage);
+      errorLoggerToFile.error(errorMessage);
       return new ServiceResponse(ResponseStatus.Failed, errorMessage, null, StatusCodes.INTERNAL_SERVER_ERROR);
     }
   },

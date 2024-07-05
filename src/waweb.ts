@@ -32,10 +32,10 @@ waWebClient.on('qr', (qrCodeString) => {
 });
 
 // Listening to all incoming messages
-waWebClient.on('message_create', (message) => {
-  if (message.body.length > 2) {
-    message.reply('This is an automated response. Kindly contact the admin for further assistance.');
-  }
-});
+// waWebClient.on('message', (message) => {
+//   if (message.body.length > 1) {
+//     message.reply('This is an automated response. Kindly contact the admin for further assistance.');
+//   }
+// });
 
 export { waWebClient };
