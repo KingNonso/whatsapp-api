@@ -24,3 +24,13 @@ export const validateRequest = (schema: ZodSchema) => (req: Request, res: Respon
     res.status(statusCode).send(new ServiceResponse<null>(ResponseStatus.Failed, errorMessage, null, statusCode));
   }
 };
+
+export const authenticateAPIKey = () => (req: Request, res: Response, next: NextFunction) => {
+  const secretKey = req.headers['secret-key'];
+  if (secretKey !== process.env.API_SECRET_KEY) {
+    return res
+      .status(StatusCodes.UNAUTHORIZED)
+      .send(new ServiceResponse<null>(ResponseStatus.Failed, 'Unauthorized', null, StatusCodes.UNAUTHORIZED));
+  }
+  next();
+};

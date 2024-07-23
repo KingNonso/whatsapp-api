@@ -17,10 +17,14 @@ import { webRouter } from './api/web/webRouter';
 const logger = pino({ name: 'server start' });
 const infoLoggerToFile = pino({ name: 'Info logger', level: 'info' }, pino.destination('public/logs/info.log'));
 const errorLoggerToFile = pino({ name: 'Error logger', level: 'error' }, pino.destination('public/logs/errors.log'));
+
 const app: Express = express();
 
 // Set the application to trust the reverse proxy
 app.set('trust proxy', true);
+
+app.set('views', 'views');
+app.set('view engine', 'ejs');
 
 // Middlewares
 app.use(express.json());

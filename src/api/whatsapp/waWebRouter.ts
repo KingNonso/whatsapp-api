@@ -19,6 +19,9 @@ export const waWebRouter: Router = (() => {
     path: '/wa-web/send-message',
     tags: ['WhatsApp'],
     request: {
+      // headers: z.object({
+      //   secretKey: z.string().openapi({ description: "API secret key to authenticate requests. It's a secret!" }),
+      // }),
       body: {
         description: 'Send a single message to a WhatsApp user',
         content: {
