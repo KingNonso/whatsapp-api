@@ -12,8 +12,6 @@ import rateLimiter from '@/common/middleware/rateLimiter';
 import requestLogger from '@/common/middleware/requestLogger';
 import { env } from '@/common/utils/envConfig';
 
-import { webRouter } from './api/web/webRouter';
-
 const logger = pino({ name: 'server start' });
 const infoLoggerToFile = pino({ name: 'Info logger', level: 'info' }, pino.destination('public/logs/info.log'));
 const errorLoggerToFile = pino({ name: 'Error logger', level: 'error' }, pino.destination('public/logs/errors.log'));
@@ -31,13 +29,11 @@ app.use(express.json());
 app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(helmet());
 app.use(rateLimiter);
-app.use(express.static('public'));
 
 // Request logging
 app.use(requestLogger);
 
 // Routes
-app.use('/', webRouter);
 app.use('/health-check', healthCheckRouter);
 app.use('/wa-web', waWebRouter);
 
@@ -47,4 +43,4 @@ app.use(openAPIRouter);
 // Error handlers
 app.use(errorHandler());
 
-export { app, errorLoggerToFile, infoLoggerToFile, logger };
+export { app, logger };
