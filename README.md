@@ -1,11 +1,7 @@
 # Peddlebot
 
-
 [![Build Express Application](https://github.com/edwinhern/express-typescript-2024/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/build.yml)
 [![Docker Image CI](https://github.com/edwinhern/express-typescript-2024/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/edwinhern/express-typescript-2024/actions/workflows/docker-image.yml)
-
-
-
 
 Peddlebot is a modern WhatsApp-sending bot designed to integrate with WhatsApp Business. Built with Node/Express and powered by the Express TypeScript Boilerplate 2024, Peddlebot offers a robust, scalable, and secure solution for automated WhatsApp messaging.
 
@@ -43,50 +39,59 @@ Before launching Peddlebot in production, follow these steps on your staging ser
 
 3. **Directory Navigation:**  
    Navigate to the Peddlebot directory containing the wa-peddlebot application files.
+
    ```bash
    cd peddlebot
    ```
 
 4. **Node Version Management:**  
    Use the correct Node.js version for the project:
+
    ```bash
    nvm use
    ```
+
    (Make sure NVM is installed on your server.)
 
 5. **pm2 Session Check and Stop:**  
-   The wa-peddlebot application is managed by pm2, a process manager. Check if an active pm2 session for wa-peddlebot is running.  If a session exists, it needs to be stopped before proceeding. Check for any running PM2 processes:
+   The wa-peddlebot application is managed by pm2, a process manager. Check if an active pm2 session for wa-peddlebot is running. If a session exists, it needs to be stopped before proceeding. Check for any running PM2 processes:
+
    ```bash
    pm2 list
    ```
+
    Then stop the Peddlebot process if active:
+
    ```bash
    pm2 stop <process_name_or_id>
    ```
 
 6. **Authentication Clearing:**  
    Clear any stored WhatsApp Business authentication data to ensure a clean connection:
+
    ```bash
    npm run clear-auth
    ```
 
 7. **pm2 Session Restart:**  
    Restart the PM2 session to launch Peddlebot with updated settings:
+
    ```bash
    pm2 restart <process_name_or_id>
    ```
 
 8. **Log Monitoring:**  
    Monitor the application logs in real-time:
+
    ```bash
    pm2 logs <process_name_or_id> -f
    ```
 
 9. **QR Code Generation and Scanning:**  
-   Once you see the log message "loading complete," a QR code will be generated and displayed in the logs.  
-   - Open the WhatsApp mobile app (using your master account) and choose the option to link a device.  
+   Once you see the log message "loading complete," a QR code will be generated and displayed in the logs.
+   - Open the WhatsApp mobile app (using your master account) and choose the option to link a device.
    - Scan the QR code with your mobile app.  
-   This will connect your WhatsApp Business account to Peddlebot.
+     This will connect your WhatsApp Business account to Peddlebot.
 
 ## 📁 Getting Started
 
@@ -175,12 +180,13 @@ The project is organized following the Express TypeScript Boilerplate 2024 conve
 
 ## 📝 Summary
 
-This guide outlines how to set up WhatsApp Business on a staging server using wa-peddlebot.  It involves:
- * Checking for and deleting existing sessions.
- * Navigating to the wa-peddlebot directory.
- * Ensuring the correct Node version is used.
- * Stopping any existing pm2 session.
- * Clearing authentication.
- * Restarting the pm2 session.
- * Monitoring logs for "loading complete" and the QR code.
- * Scanning the QR code with the master WhatsApp account.
+This guide outlines how to set up WhatsApp Business on a staging server using wa-peddlebot. It involves:
+
+- Checking for and deleting existing sessions.
+- Navigating to the wa-peddlebot directory.
+- Ensuring the correct Node version is used.
+- Stopping any existing pm2 session.
+- Clearing authentication.
+- Restarting the pm2 session.
+- Monitoring logs for "loading complete" and the QR code.
+- Scanning the QR code with the master WhatsApp account.
