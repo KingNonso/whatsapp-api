@@ -8,7 +8,7 @@ import { healthCheckRouter } from '@/api/healthCheck/healthCheckRouter';
 import { waWebRouter } from '@/api/whatsapp/waWebRouter';
 import { openAPIRouter } from '@/api-docs/openAPIRouter';
 import errorHandler from '@/common/middleware/errorHandler';
-// import rateLimiter from '@/common/middleware/rateLimiter';
+import rateLimiter from '@/common/middleware/rateLimiter';
 import requestLogger from '@/common/middleware/requestLogger';
 import { env } from '@/common/utils/envConfig';
 
@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(cors({ origin: env.CORS_ORIGIN, credentials: true }));
 app.use(helmet());
-// app.use(rateLimiter);
+app.use(rateLimiter);
 app.use(express.static('public'));
 
 // Request logging
