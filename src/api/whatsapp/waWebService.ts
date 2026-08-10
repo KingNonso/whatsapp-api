@@ -26,7 +26,7 @@ export const waWebService = {
       const username = `${purifiedPhoneNumber}@c.us`;
       const response = await waWebClient.sendMessage(username, message);
       logger.info(`Sending message to ${username}: ${message}`);
-      if (response.ack !== -1) {
+      if (response?.ack !== -1) {
         logger.info(`Message sent to ${phoneNumber}`);
         infoLoggerToFile.info(`Message sent to ${phoneNumber}`);
         return new ServiceResponse<string>(
@@ -35,16 +35,16 @@ export const waWebService = {
           `Message sent to ${phoneNumber}`,
           StatusCodes.OK
         );
-      } else {
-        logger.error(`Message NOT sent to ${phoneNumber}`);
-        errorLoggerToFile.error(`Message NOT sent to ${phoneNumber}`);
-        return new ServiceResponse<string>(
-          ResponseStatus.Failed,
-          'Something went wrong. Message not sent',
-          `Message NOT sent to ${phoneNumber}`,
-          StatusCodes.INTERNAL_SERVER_ERROR
-        );
       }
+
+      logger.error(`Message NOT sent to ${phoneNumber}`);
+      errorLoggerToFile.error(`Message NOT sent to ${phoneNumber}`);
+      return new ServiceResponse<string>(
+        ResponseStatus.Failed,
+        'Something went wrong. Message not sent',
+        `Message NOT sent to ${phoneNumber}`,
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
     } catch (ex) {
       const errorMessage = `Error sending message: $${(ex as Error).message}`;
       logger.error(errorMessage);
